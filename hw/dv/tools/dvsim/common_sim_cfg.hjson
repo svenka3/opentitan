@@ -57,7 +57,7 @@
 
   // Default build and run opts
   build_opts: [// List multiple tops for the simulation
-               "{sim_tops}",
+               // VW TBD - maybe we need build_opts_qsta "{sim_tops}",
                // Standard UVM defines
                "+define+UVM",
                "+define+UVM_NO_DEPRECATED",

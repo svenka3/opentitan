@@ -2,8 +2,7 @@
 // Licensed under the Apache License, Version 2.0, see LICENSE for details.
 // SPDX-License-Identifier: Apache-2.0
 {
-  // VW build_cmd:  "vlib work && {job_prefix} vlog"
-  build_cmd:  "qverilog "
+  build_cmd:  "vlib work && {job_prefix} vlog"
   run_cmd:    "{job_prefix} vsim"
 
   // Indicate the tool specific helper sources - these are copied over to the
@@ -13,10 +12,13 @@
   build_opts: ["-sv",
                "-timescale 1ns/1ps",
                "-L /${QUESTA_HOME}/uvm-1.2",
+               "+define+VW_QSTA",
                "-mfcu"
                "-f {sv_flist}"]
 
   run_opts:   ["-sv_seed={seed}",
+               // List multiple tops for the simulation
+               "{sim_tops}",
                "-c",
                "-L /${QUESTA_HOME}/uvm-1.2",
                "{tb}",
