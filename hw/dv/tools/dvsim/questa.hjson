@@ -2,6 +2,8 @@
 // Licensed under the Apache License, Version 2.0, see LICENSE for details.
 // SPDX-License-Identifier: Apache-2.0
 {
+  // sv_flist_gen_opts:  ["-sim=questa"]
+
   build_cmd:  "vlib work && {job_prefix} vlog"
   run_cmd:    "{job_prefix} vsim"
 
@@ -16,7 +18,7 @@
                "-mfcu"
                "-f {sv_flist}"]
 
-  run_opts:   ["-sv_seed={seed}",
+  run_opts:   ["-sv_seed {seed}",
                // List multiple tops for the simulation
                "{sim_tops}",
                "-c",

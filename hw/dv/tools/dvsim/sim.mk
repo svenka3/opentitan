@@ -30,7 +30,8 @@ gen_sv_flist: pre_build
 	@echo "[make]: gen_sv_flist"
 	cd ${build_dir} && ${sv_flist_gen_cmd} ${sv_flist_gen_opts}
 
-build_tb: gen_sv_flist
+# VW build_tb: gen_sv_flist
+build_tb: 
 	@echo "[make]: build the testbench"
 	cd ${sv_flist_gen_dir} && ${build_cmd} ${build_opts}
 

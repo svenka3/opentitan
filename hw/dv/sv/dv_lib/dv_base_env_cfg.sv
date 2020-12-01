@@ -23,7 +23,12 @@ class dv_base_env_cfg #(type RAL_T = dv_base_reg_block) extends uvm_object;
   // reg model & q of valid csr addresses
   RAL_T                             ral;
   dv_base_reg_block                 ral_models[$];
+  `ifdef VW_QSTA 
+    uvm_reg_addr_t csr_addrs[$];
+  `else
   bit [bus_params_pkg::BUS_AW-1:0]  csr_addrs[$];
+  `endif
+
   addr_range_t                      mem_ranges[$];
 
   // clk_rst_if & freq
