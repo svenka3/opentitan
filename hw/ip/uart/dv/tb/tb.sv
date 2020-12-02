@@ -2,6 +2,12 @@
 // Licensed under the Apache License, Version 2.0, see LICENSE for details.
 // SPDX-License-Identifier: Apache-2.0
 //
+
+`ifdef VW_QSTA
+  `include "alert_esc_if.sv"
+  `include "alert_esc_probe_if.sv"
+`endif // VW_QSTA
+
 module tb;
   // dep packages
   import uvm_pkg::*;
@@ -68,6 +74,11 @@ module tb;
   assign uart_rx = uart_if.uart_rx;
   assign uart_if.uart_tx = uart_tx;
 
+ `ifdef VW_QSTA
+   alert_esc_if u_alert_esc_if (.*);
+   alert_esc_probe_if u_alert_esc_probe_if (.*);
+ `endif // VW_QSTA
+
   initial begin
     // drive clk and rst_n from clk_if
     clk_rst_if.set_active();
@@ -76,6 +87,13 @@ module tb;
     uvm_config_db#(devmode_vif)::set(null, "*.env", "devmode_vif", devmode_if);
     uvm_config_db#(virtual tl_if)::set(null, "*.env.m_tl_agent*", "vif", tl_if);
     uvm_config_db#(virtual uart_if)::set(null, "*.env.m_uart_agent*", "vif", uart_if);
+    // VW added for QSTA
+ `ifdef VW_QSTA
+    uvm_config_db#(virtual alert_esc_if)::set(null, "*.env.m_alert_agent*", "vif", u_alert_esc_if);
+    uvm_config_db#(virtual alert_esc_if)::set(null, "*.env.cfg.m_alert_agent_cfg*.*", "vif", u_alert_esc_if);
+    uvm_config_db#(virtual alert_esc_probe_if)::set(null, "*.env.cfg.m_alert_agent_cfg*.*", "probe_vif", u_alert_esc_probe_if);
+  `endif // VW_QSTA
+
     $timeformat(-12, 0, " ps", 12);
     run_test();
   end
