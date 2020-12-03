@@ -22,6 +22,8 @@
   // VW TBD run_script: "do {tool_srcs_dir}/questa_run.do"
   run_script: "run -all; exit"
 
+  // verbosity: f
+
   run_opts:   ["-sv_seed {seed}",
                // List multiple tops for the simulation
                "{sim_tops}",
@@ -32,8 +34,11 @@
                "-lib {sv_flist_gen_dir}/work",
                "+UVM_TESTNAME={uvm_test}",
                "+UVM_TEST_SEQ={uvm_test_seq}",
+               "+show_file_path=1",
                // "-do {run_script}"
-               //"-do \"run -all; exit\""
+               // ''' -do "do {run_script}" '''
+               // '''  "run -all; exit" '''
+               // "-do \"run -all; exit\""
                ]
 
 

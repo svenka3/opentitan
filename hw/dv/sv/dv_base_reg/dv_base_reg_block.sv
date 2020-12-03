@@ -158,6 +158,8 @@ class dv_base_reg_block extends uvm_reg_block;
 
     // Check base addr alignment (which should be guaranteed if we just picked it, but needs
     // checking if not).
+    `uvm_info(`gfn, $sformatf("base_addr: 0x%0h mask: 0x%0h",
+      base_addr, mask), UVM_LOW)
     `DV_CHECK_FATAL((base_addr & mask) == '0)
     `uvm_info(`gfn, $sformatf("Setting register base address to 0x%0h", base_addr), UVM_HIGH)
     map.set_base_addr(base_addr);
