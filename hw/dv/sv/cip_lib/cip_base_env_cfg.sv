@@ -30,7 +30,12 @@ class cip_base_env_cfg #(type RAL_T = dv_base_reg_block) extends dv_base_env_cfg
 
   `uvm_object_new
 
-  virtual function void initialize(bit [BUS_AW-1:0] csr_base_addr = '1);
+  `ifdef VW_QSTA
+  virtual function void initialize(uvm_reg_addr_t csr_base_addr = '1);
+  `else
+  virtual function void initialize(bit [bus_params_pkg::BUS_AW-1:0] csr_base_addr = '1);
+  `endif // VW_QSTA
+
     super.initialize(csr_base_addr);
     // create tl agent config obj
     m_tl_agent_cfg = tl_agent_cfg::type_id::create("m_tl_agent_cfg");

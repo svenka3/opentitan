@@ -29,6 +29,7 @@
                "{sim_tops}",
                "-suppress vsim-8323",
                // VW TBD "-c",
+               "-c",
                "-L /${QUESTA_HOME}/uvm-1.2",
                "{tb}",
                "-lib {sv_flist_gen_dir}/work",
@@ -36,9 +37,7 @@
                "+UVM_TEST_SEQ={uvm_test_seq}",
                "+show_file_path=1",
                // "-do {run_script}"
-               // ''' -do "do {run_script}" '''
-               // '''  "run -all; exit" '''
-               // "-do \"run -all; exit\""
+               '''-do \"run -all; exit\"'''
                ]
 
 

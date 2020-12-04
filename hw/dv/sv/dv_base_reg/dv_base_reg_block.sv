@@ -145,21 +145,36 @@ class dv_base_reg_block extends uvm_reg_block;
   // Check that base_addr is aligned as required by the register block. If the supplied base_addr is
   // the "magic" address '1, randomly pick an appropriately aligned base address and set it for the
   // specified map.
-  function void set_base_addr(uvm_reg_addr_t base_addr = '1, uvm_reg_map map = null);
+  `ifdef VW_QSTA
+    function void set_base_addr(bit [bus_params_pkg::BUS_AW-1:0] base_addr = '1, uvm_reg_map map = null);
+  `else
+    function void set_base_addr(uvm_reg_addr_t base_addr = '1, uvm_reg_map map = null);
+  `endif
+
     uvm_reg_addr_t mask;
 
     if (map == null) map = get_default_map();
     mask = get_addr_mask(map);
 
+    // VW_QSTA
+    `uvm_info(`gfn, $sformatf("Before randomize: UVM_REG_ADDR_WIDTH: %0d base_addr: 0x%0h mask: 0x%0h",
+      `UVM_REG_ADDR_WIDTH, base_addr, mask), UVM_LOW)
+      
     // If base_addr is '1, randomly pick an aligned base address
+
     if (base_addr == '1) begin
-      `DV_CHECK_STD_RANDOMIZE_WITH_FATAL(base_addr, (base_addr & mask) == '0;)
+
+        `DV_CHECK_STD_RANDOMIZE_WITH_FATAL(base_addr, (base_addr & mask) == '0;)
+      `uvm_info(`gfn, $sformatf("post randomize: UVM_REG_ADDR_WIDTH: %0d base_addr: 0x%0h mask: 0x%0h",
+      `UVM_REG_ADDR_WIDTH, base_addr, mask), UVM_LOW)
+
     end
 
     // Check base addr alignment (which should be guaranteed if we just picked it, but needs
     // checking if not).
-    `uvm_info(`gfn, $sformatf("base_addr: 0x%0h mask: 0x%0h",
-      base_addr, mask), UVM_LOW)
+    // VW_QSTA
+    `uvm_info(`gfn, $sformatf("UVM_REG_ADDR_WIDTH: %0d base_addr: 0x%0h mask: 0x%0h",
+      `UVM_REG_ADDR_WIDTH, base_addr, mask), UVM_LOW)
     `DV_CHECK_FATAL((base_addr & mask) == '0)
     `uvm_info(`gfn, $sformatf("Setting register base address to 0x%0h", base_addr), UVM_HIGH)
     map.set_base_addr(base_addr);

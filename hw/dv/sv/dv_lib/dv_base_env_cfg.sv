@@ -45,7 +45,14 @@ class dv_base_env_cfg #(type RAL_T = dv_base_reg_block) extends uvm_object;
 
   `uvm_object_new
 
+  `ifdef VW_QSTA
+  virtual function void initialize(uvm_reg_addr_t csr_base_addr = '1);
+  `else
   virtual function void initialize(bit [bus_params_pkg::BUS_AW-1:0] csr_base_addr = '1);
+  `endif // VW_QSTA
+
+  $display ("bus_params_pkg::BUS_AW: %0d", bus_params_pkg::BUS_AW);
+
     // build the ral model
     if (has_ral) begin
       uvm_reg_addr_t base_addr;
