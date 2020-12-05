@@ -1,0 +1,19 @@
+../ivl_uvm_single_file.sv:999: warning: User function 'm_check_verbosity' is being called as a task.
+../ivl_uvm_single_file.sv:1091: warning: User function 'uvm_count_info' is being called as a task.
+../ivl_uvm_single_file.sv:1210: internal error: Can't find task uvm_count_info in class uvm_component
+../ivl_uvm_single_file.sv:1210: warning: User function 'uvm_count_info' is being called as a task.
+../ivl_uvm_single_file.sv:1214: internal error: Can't find task uvm_count_info in class uvm_component
+../ivl_uvm_single_file.sv:1214: warning: User function 'uvm_count_info' is being called as a task.
+../ivl_uvm_single_file.sv:1218: internal error: Can't find task uvm_count_info in class uvm_component
+../ivl_uvm_single_file.sv:1218: warning: User function 'uvm_count_info' is being called as a task.
+../ivl_uvm_single_file.sv:1221: internal error: Can't find task uvm_count_info in class uvm_component
+../ivl_uvm_single_file.sv:1221: warning: User function 'uvm_count_info' is being called as a task.
+../ivl_uvm_single_file.sv:1226: internal error: Can't find task uvm_count_info in class uvm_component
+../ivl_uvm_single_file.sv:1226: warning: User function 'uvm_count_info' is being called as a task.
+../ivl_uvm_single_file.sv:1184: internal error: Can't find task uvm_count_info in class uvm_object
+../ivl_uvm_single_file.sv:1184: warning: User function 'uvm_count_info' is being called as a task.
+../ivl_uvm_single_file.sv:1291: warning: User function 'uvm_count_info' is being called as a task.
+../ivl_uvm_single_file.sv:1292: warning: User function 'uvm_count_info' is being called as a task.
+../ivl_uvm_single_file.sv:1293: warning: User function 'uvm_count_info' is being called as a task.
+../ivl_uvm_single_file.sv:1294: warning: User function 'uvm_count_info' is being called as a task.
+6 error(s) during elaboration.
