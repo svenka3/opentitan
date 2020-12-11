@@ -145,11 +145,11 @@ class dv_base_reg_block extends uvm_reg_block;
   // Check that base_addr is aligned as required by the register block. If the supplied base_addr is
   // the "magic" address '1, randomly pick an appropriately aligned base address and set it for the
   // specified map.
-  `ifdef VW_QSTA
+  `ifdef VW_QSTA_ADDR_FIX
     function void set_base_addr(bit [bus_params_pkg::BUS_AW-1:0] base_addr = '1, uvm_reg_map map = null);
   `else
     function void set_base_addr(uvm_reg_addr_t base_addr = '1, uvm_reg_map map = null);
-  `endif
+  `endif // VW_QSTA_ADDR_FIX
 
     uvm_reg_addr_t mask;
 

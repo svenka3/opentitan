@@ -23,7 +23,7 @@ class dv_base_env_cfg #(type RAL_T = dv_base_reg_block) extends uvm_object;
   // reg model & q of valid csr addresses
   RAL_T                             ral;
   dv_base_reg_block                 ral_models[$];
-  `ifdef VW_QSTA 
+  `ifdef VW_QSTA_ADDR_FIX 
     uvm_reg_addr_t csr_addrs[$];
   `else
   bit [bus_params_pkg::BUS_AW-1:0]  csr_addrs[$];
@@ -45,11 +45,11 @@ class dv_base_env_cfg #(type RAL_T = dv_base_reg_block) extends uvm_object;
 
   `uvm_object_new
 
-  `ifdef VW_QSTA
+  `ifdef VW_QSTA_ADDR_FIX
   virtual function void initialize(uvm_reg_addr_t csr_base_addr = '1);
   `else
   virtual function void initialize(bit [bus_params_pkg::BUS_AW-1:0] csr_base_addr = '1);
-  `endif // VW_QSTA
+  `endif // VW_QSTA_ADDR_FIX
 
   $display ("bus_params_pkg::BUS_AW: %0d", bus_params_pkg::BUS_AW);
 

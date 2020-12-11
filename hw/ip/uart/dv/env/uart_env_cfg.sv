@@ -17,11 +17,11 @@ class uart_env_cfg extends cip_base_env_cfg #(.RAL_T(uart_reg_block));
 
   `uvm_object_new
 
-  `ifdef VW_QSTA
+  `ifdef VW_QSTA_ADDR_FIX
   virtual function void initialize(uvm_reg_addr_t csr_base_addr = '1);
   `else
   virtual function void initialize(bit [bus_params_pkg::BUS_AW-1:0] csr_base_addr = '1);
-  `endif // VW_QSTA
+  `endif // VW_QSTA_ADDR_FIX
 
     super.initialize(csr_base_addr);
     // create uart agent config obj
